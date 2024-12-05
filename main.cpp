@@ -10,5 +10,9 @@ int main() {
     cout << "- Para ingresar una ficha tendras que escribir la columna donde deseas colocarlo." << endl;
     cout << "-----------------------------------------------------------------------------------" << endl;
     
+    Juego juego;
     int opcion;
+    
+    juego.iniciar();
+    return 0;
 }

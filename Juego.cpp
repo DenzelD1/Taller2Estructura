@@ -1,0 +1,60 @@
+#include "Juego.h"
+#include <iostream>
+using namespace std;
+
+Juego::Juego() : tablero(6, 7), turno(1) {}
+
+void Juego::iniciar() {
+    int dificultad;
+    cout << "Selecciona una dificultad para la IA:" << endl;
+    cout << "1. Facil" << endl;
+    cout << "2. Dificil" << endl;
+    cin >> dificultad;
+
+    while (true) {
+        tablero.imprimirTablero();
+        if (turno == 1) {
+            int columna;
+            cout << "Turno del Jugador. Ingrese columna (0-6): ";
+            cin >> columna;
+            procesarMovimientoDeJugador(columna);
+        } else {
+            cout << "Turno de la IA.\n";
+            procesarMovimientoDeIA(dificultad);
+        }
+
+        int estado = tablero.verificarEstado();
+        if (estado == 1) {
+            tablero.imprimirTablero();
+            cout << "¡Jugador gana!\n";
+            break;
+        } else if (estado == 2) {
+            tablero.imprimirTablero();
+            cout << "¡La IA gana!\n";
+            break;
+        } else if (estado == 3) {
+            tablero.imprimirTablero();
+            cout << "¡Empate!\n";
+            break;
+        }
+
+        turno = (turno == 1) ? 2 : 1;
+    }
+}
+
+void Juego::procesarMovimientoDeJugador(int columna) {
+    while (!tablero.insertarFicha(columna, 1)) {
+        cout << "Movimiento invalido o columna sin espacio. Intente nuevamente: ";
+        cin >> columna;
+    }
+}
+
+void Juego::procesarMovimientoDeIA(int dificultad) {
+    int columnaIA = ia.mejorMovimiento(tablero, dificultad);
+    if (columnaIA != -1) {
+        tablero.insertarFicha(columnaIA, 2);
+        cout << "La IA eligio la columna: " << columnaIA << endl;
+    } else {
+        cout << "Error: La IA no pudo determinar un movimiento valido.\n";
+    }
+}
