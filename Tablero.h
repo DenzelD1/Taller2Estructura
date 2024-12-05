@@ -11,7 +11,7 @@ class Tablero {
         Tablero(int filas = 6, int columnas = 7);
 
         bool insertarFicha(int columna, int jugador);
-        int verificarEstado();
+        int verificarEstado() const; 
         void imprimirTablero();
         void reiniciarTablero();
 };
