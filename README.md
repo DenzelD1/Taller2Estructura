@@ -15,8 +15,11 @@
 - Es un juego de mesa vertical para dos jugadores, el cual consta en formar una linea de 4 fichas del mismo color para la victoria.
 
 - Reglas:
+- Tienes que formar una linea de 4 fichas, ya sea horizontal, vertical o diagonal.
+- Como jugador, tu fixha se representa con "X", mientras que la IA será el "O".
+- Para ingresar una ficha tendrás que escribir la columna donde deseas colocarlo.
 
-- Representación visual con árbol (primeros tres movimientos)
+- Representación visual con árbol (primeros tres movimientos):
 
 * Algoritmo Minimax
 
