@@ -19,8 +19,9 @@ int main() {
 
     do {
         juego.iniciar();
+        juego.reiniciarJuego();
         cout << "-----------------------------------------------------------------------------------" << endl;
-        cout << "¿Siguiente ronda? (Si/No)" << endl;
+        cout << "Siguiente ronda? (Si/No)" << endl;
         cin >> jugar;
 
         transform(jugar.begin(), jugar.end(), jugar.begin(), ::tolower);
@@ -30,7 +31,7 @@ int main() {
             ronda++;
             cout << "                                     Ronda " << ronda << endl;
         } else if (jugar != "no") {
-            while(jugar == "si" || jugar == "no") { 
+            while(jugar != "si" || jugar != "no") { 
                 cout << "Ingrese nuevamente su opcion: ";
                 cin >> jugar;
                 cout << endl;

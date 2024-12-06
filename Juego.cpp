@@ -32,15 +32,15 @@ void Juego::iniciar() {
         int estado = tablero.verificarEstado();
         if (estado == 1) {
             tablero.imprimirTablero();
-            cout << "¡Jugador gana!\n";
+            cout << "Jugador gana!\n";
             break;
         } else if (estado == 2) {
             tablero.imprimirTablero();
-            cout << "¡La IA gana!\n";
+            cout << "La IA gana!\n";
             break;
         } else if (estado == 3) {
             tablero.imprimirTablero();
-            cout << "¡Empate!\n";
+            cout << "Empate!\n";
             break;
         }
 
