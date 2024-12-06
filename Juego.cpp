@@ -11,6 +11,12 @@ void Juego::iniciar() {
     cout << "2. Dificil" << endl;
     cin >> dificultad;
 
+    while(dificultad != 1 && dificultad != 2) {
+        cout << "Ingrese nuevamente su opcion: ";
+        cin >> dificultad;
+        cout << endl;
+    }
+
     while (true) {
         tablero.imprimirTablero();
         if (turno == 1) {
@@ -57,4 +63,9 @@ void Juego::procesarMovimientoDeIA(int dificultad) {
     } else {
         cout << "Error: La IA no pudo determinar un movimiento valido.\n";
     }
+}
+
+void Juego::reiniciarJuego() {
+    tablero.reiniciarTablero();
+    turno = 1;
 }

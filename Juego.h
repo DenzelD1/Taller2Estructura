@@ -13,4 +13,5 @@ class Juego {
         void iniciar(); 
         void procesarMovimientoDeJugador(int columna);
         void procesarMovimientoDeIA(int dificultad);
+        void reiniciarJuego();
 };
