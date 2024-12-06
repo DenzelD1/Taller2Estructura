@@ -29,11 +29,11 @@ El algoritmo Minimax es una técnica utilizada en juegos de dos jugadores (por e
 - Cada nodo del árbol representa un estado del juego.
 - Los nodos hijos representan todos los estados posibles a partir de un movimiento.
 - Dos jugadores:
-  MAX: Intenta maximizar el puntaje.
-  MIN: Intenta minimizar el puntaje.
--Las hojas del árbol se evalúan con una función heurística que asigna un valor.
--El algoritmo recorre el árbol del juego de forma recursiva hasta llegar a las hojas.
-MAX elige el valor máximo de sus hijos; MIN elige el valor mínimo.
+  - MAX: Intenta maximizar el puntaje.
+  - MIN: Intenta minimizar el puntaje.
+- Las hojas del árbol se evalúan con una función heurística que asigna un valor.
+- El algoritmo recorre el árbol del juego de forma recursiva hasta llegar a las hojas.
+- MAX elige el valor máximo de sus hijos; MIN elige el valor mínimo.
 
 ## Poda alfa-beta
 La poda alfa-beta es una optimización del algoritmo Minimax que reduce drásticamente el número de nodos evaluados, donde:
