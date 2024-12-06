@@ -20,7 +20,7 @@
 - Para ingresar una ficha tendrás que escribir la columna donde deseas colocarlo.
 
 - Representación visual con árbol (primeros tres movimientos):
-<span>![</span><span>Imagen arbol conecta 4</span><span>]</span><span>(</span><span>https://github.com/DenzelD1/Taller2Estructura/blob/main/arbol%20conecta%204.png</span><span>)</span>
+<span>![</span><span>Imagen arbol conecta 4</span><span>]</span><span>(</span><span>https://raw.githubusercontent.com/DenzelD1/Taller2Estructura/blob/main/arbol%20conecta%204.png</span><span>)</span>
 
 * Algoritmo Minimax
 
