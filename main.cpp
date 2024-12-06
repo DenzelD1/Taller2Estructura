@@ -23,19 +23,19 @@ int main() {
         cout << "-----------------------------------------------------------------------------------" << endl;
         cout << "Siguiente ronda? (Si/No)" << endl;
         cin >> jugar;
-
         transform(jugar.begin(), jugar.end(), jugar.begin(), ::tolower);
 
+        while(jugar != "si" && jugar != "no") {
+            cout << "Ingrese nuevamente su opcion: ";
+            cin >> jugar;
+            transform(jugar.begin(), jugar.end(), jugar.begin(), ::tolower);
+        }
+
         if(jugar == "si") {
-            cout << "-----------------------------------------------------------------------------------" << endl;
             ronda++;
+            cout << "-----------------------------------------------------------------------------------" << endl;
             cout << "                                     Ronda " << ronda << endl;
-        } else if (jugar != "no") {
-            while(jugar != "si" || jugar != "no") { 
-                cout << "Ingrese nuevamente su opcion: ";
-                cin >> jugar;
-                cout << endl;
-            }
+            cout << "-----------------------------------------------------------------------------------" << endl;
         }
     } while (jugar == "si");
     cout << "-----------------------------------------------------------------------------------" << endl;
