@@ -8,7 +8,7 @@
 
 ### Ejecutar programa:
 
-- Primero, se debe crear el ejecutable "g++ -std=c++11 main.cpp Juego.cpp Minimax.cpp Tablero.cpp -o main.exe". Luego, para ejecutar el programa debe escribir "./main.exe".
+- Primero, se debe crear el ejecutable "g++ -std=c++11 main.cpp Juego.cpp Minimax.cpp Tablero.cpp -o main.exe". Luego, para ejecutar el programa debe escribir "./main.exe". Después solo siga las instrucciones que le da el programa para poder jugar.
 
 ## Juego: Conecta 4
 
@@ -48,13 +48,76 @@ Durante la evaluación de un nodo, si:
 
 ## Complejidad temporal del algoritmo
 ### Minimax sin poda:
+
+    int Minimax::minimaxSinPoda(Tablero tablero, int profundidad, bool esMaximizador) {
+    int estado = tablero.verificarEstado();
+    if (estado != 0 || profundidad == 0) {
+        return evaluarEstado(tablero); 
+    }
+
+    if (esMaximizador) {
+        int mejorValor = numeric_limits<int>::min();
+        for (int col = 0; col < 7; ++col) { 
+            Tablero copia = tablero;
+            if (copia.insertarFicha(col, 1)) {
+                int valor = minimaxSinPoda(copia, profundidad - 1, false);
+                mejorValor = max(mejorValor, valor);
+            }
+        }
+        return mejorValor;
+    } else {
+        int mejorValor = numeric_limits<int>::max();
+        for (int col = 0; col < 7; ++col) {
+            Tablero copia = tablero;
+            if (copia.insertarFicha(col, 2)) {
+                int valor = minimaxSinPoda(copia, profundidad - 1, true);
+                mejorValor = min(mejorValor, valor);
+            }
+        }
+        return mejorValor;
+    }
+
+
 - El algoritmo evalúa todos los nodos del árbol, y en cada nivel explora b=7 ramas. Por lo tanto, el número total de nodos explorados es: Nodos evaluados = 𝑏^𝑑 = 7^𝑑
 
 - Esto implica que la complejidad temporal es: 𝑂(7^𝑑)
 
 ### Minimax con poda:
+
+    int Minimax::minimaxConPoda(Tablero tablero, int profundidad, int alfa, int beta, bool esMaximizador) {
+    int estado = tablero.verificarEstado();
+    if (estado != 0 || profundidad == 0) {
+        return evaluarEstado(tablero);
+    }
+
+    if (esMaximizador) {
+        int mejorValor = numeric_limits<int>::min();
+        for (int col = 0; col < 7; ++col) {
+            Tablero copia = tablero;
+            if (copia.insertarFicha(col, 1)) {
+                int valor = minimaxConPoda(copia, profundidad - 1, alfa, beta, false);
+                mejorValor = max(mejorValor, valor);
+                alfa = max(alfa, mejorValor);
+                if (beta <= alfa) break; 
+            }
+        }
+        return mejorValor;
+    } else {
+        int mejorValor = numeric_limits<int>::max();
+        for (int col = 0; col < 7; ++col) {
+            Tablero copia = tablero;
+            if (copia.insertarFicha(col, 2)) {
+                int valor = minimaxConPoda(copia, profundidad - 1, alfa, beta, true);
+                mejorValor = min(mejorValor, valor);
+                beta = min(beta, mejorValor);
+                if (beta <= alfa) break; 
+            }
+        }
+        return mejorValor;
+    }
+
 - Mejor Caso:
-En el mejor caso, las ramas más prometedoras se evalúan primero, lo que permite maximizar la poda.
+En el mejor caso, las ramas más prometedoras se evalúan primero, lo que permite maximizar la poda. En cada nivel, se exploran aproximadamente la mitad de las ramas. En lugar de evaluar 7^𝑑 nodos, se evalúan (7/2)^𝑑.
 La complejidad temporal en el mejor caso es entonces: O(7^(d/2))
 
 - Peor Caso:
