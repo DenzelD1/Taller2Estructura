@@ -122,3 +122,11 @@ La complejidad temporal en el mejor caso es entonces: O(7^(d/2))
 
 - Peor Caso:
 En el peor caso, las ramas menos prometedoras se evalúan primero, y la poda es ineficaz. Esto equivale a recorrer todo el árbol de juego, lo mismo que el Minimax sin poda: 𝑂(7^𝑑)
+
+### Dificultad:
+- FÁCIL:
+- - Tiempo de respuesta medio de la IA en 7 movimientos: 6,090774 segundos.
+- - Tiempo de respuesta medio de la IA despues de los 7 movimientos: 0,045532 segundos.
+
+- DIFÍCIL:
+- - Tiempo de respuesta medio: 0,039933 segundos.
