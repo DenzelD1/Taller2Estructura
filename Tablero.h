@@ -13,12 +13,12 @@ using namespace std;
 
 class Tablero {
     private:
-         ///< Matriz que representa el estado del tablero. Cada celda puede contener: 0 (vacía), 1 (jugador humano), o 2 (IA).
+
         int filas; ///< Número de filas del tablero.
         int columnas; ///< Número de columnas del tablero.
 
     public:
-        vector<vector<int>> tablero;
+        vector<vector<int>> tablero; ///< Matriz que representa el estado del tablero. Cada celda puede contener: 0 (vacía), 1 (jugador humano), o 2 (IA).
         
          /**
          * @brief Constructor de la clase Tablero.
