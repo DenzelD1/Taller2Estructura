@@ -16,7 +16,7 @@
 
 ### Reglas:
 - Tienes que formar una linea de 4 fichas, ya sea horizontal, vertical o diagonal.
-- Como jugador, tu fixha se representa con "X", mientras que la IA será el "O".
+- Como jugador, tu ficha se representa con "X", mientras que la IA será el "O".
 - Para ingresar una ficha tendrás que escribir la columna donde deseas colocarlo.
 
 ## Representación visual con árbol (primeros tres movimientos):

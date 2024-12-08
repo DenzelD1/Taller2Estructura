@@ -25,7 +25,7 @@ class Minimax {
          * @return El puntaje calculado para la posición actual.
          */
 
-        int minimaxSinPoda(Tablero tablero, int profundidad, bool esMaximizador);
+        int minimaxSinPoda(Tablero tablero, int profundidad, bool esMaximizador, bool dificil);
 
         /**
          * @brief Ejecuta el algoritmo Minimax con poda alfa-beta.
@@ -41,7 +41,7 @@ class Minimax {
          * @return El puntaje calculado para la posición actual.
          */
 
-        int minimaxConPoda(Tablero tablero, int profundidad, int alfa, int beta, bool esMaximizador);
+        int minimaxConPoda(Tablero tablero, int profundidad, int alfa, int beta, bool esMaximizador, bool dificil);
 
          /**
          * @brief Evalúa el estado actual del tablero.
@@ -55,7 +55,7 @@ class Minimax {
          * @return Un puntaje que representa el estado actual del tablero.
          */
 
-        int evaluarEstado(const Tablero& tablero); 
+        int evaluarEstado(const Tablero& tablero, bool dificil = true); 
 
         /**
          * @brief Determina la mejor jugada para la IA.
@@ -69,5 +69,9 @@ class Minimax {
          */
 
         int mejorMovimiento(Tablero tablero, int dificultad); 
+
+        int evaluarLinea(const Tablero& tablero, int fila, int columna, int jugador);
+
+        int calcularPuntuacion(int count, int empty);
 };
 
