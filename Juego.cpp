@@ -1,5 +1,6 @@
 #include "Juego.h"
 #include <iostream>
+#include <chrono>
 using namespace std;
 
 Juego::Juego() : tablero(6, 7), turno(1) {}
@@ -56,10 +57,16 @@ void Juego::procesarMovimientoDeJugador(int columna) {
 }
 
 void Juego::procesarMovimientoDeIA(int dificultad) {
+    auto inicio = chrono::high_resolution_clock::now(); //TOMA EL TIEMPO INICIAL
     int columnaIA = ia.mejorMovimiento(tablero, dificultad);
+    auto fin = chrono::high_resolution_clock::now(); //TOMA EL TIEMPO FINAL
+
+    chrono::duration<double> duracion = fin - inicio; //DURACION
+
     if (columnaIA != -1) {
         tablero.insertarFicha(columnaIA, 2);
         cout << "La IA eligio la columna: " << columnaIA << endl;
+        cout << "Tiempo de respuesta de la IA: " << duracion.count() << " segundos." << endl;
     } else {
         cout << "Error: La IA no pudo determinar un movimiento valido.\n";
     }
