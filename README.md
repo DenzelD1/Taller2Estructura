@@ -49,32 +49,33 @@ Durante la evaluación de un nodo, si:
 ## Complejidad temporal del algoritmo
 ### Minimax sin poda:
 
-    int Minimax::minimaxSinPoda(Tablero tablero, int profundidad, bool esMaximizador) {
-    int estado = tablero.verificarEstado();
-    if (estado != 0 || profundidad == 0) {
-        return evaluarEstado(tablero); 
-    }
+    int Minimax::minimaxSinPoda(Tablero tablero, int profundidad, bool esMaximizador, bool dificil) {
+        int estado = tablero.verificarEstado();
+        if (estado != 0 || profundidad == 0) {
+            return evaluarEstado(tablero, dificil); 
+        }
 
-    if (esMaximizador) {
-        int mejorValor = numeric_limits<int>::min();
-        for (int col = 0; col < 7; ++col) { 
-            Tablero copia = tablero;
-            if (copia.insertarFicha(col, 1)) {
-                int valor = minimaxSinPoda(copia, profundidad - 1, false);
-                mejorValor = max(mejorValor, valor);
+        if (esMaximizador) {
+            int mejorValor = numeric_limits<int>::min();
+            for (int col = 0; col < 7; ++col) { 
+                Tablero copia = tablero;
+                if (copia.insertarFicha(col, 1)) {
+                    int valor = minimaxSinPoda(copia, profundidad - 1, false, dificil);
+                    mejorValor = max(mejorValor, valor);
+                }
             }
-        }
-        return mejorValor;
-    } else {
-        int mejorValor = numeric_limits<int>::max();
-        for (int col = 0; col < 7; ++col) {
-            Tablero copia = tablero;
-            if (copia.insertarFicha(col, 2)) {
-                int valor = minimaxSinPoda(copia, profundidad - 1, true);
-                mejorValor = min(mejorValor, valor);
+            return mejorValor;
+        } else {
+            int mejorValor = numeric_limits<int>::max();
+            for (int col = 0; col < 7; ++col) {
+                Tablero copia = tablero;
+                if (copia.insertarFicha(col, 2)) {
+                    int valor = minimaxSinPoda(copia, profundidad - 1, true, dificil);
+                    mejorValor = min(mejorValor, valor);
+                }
             }
+            return mejorValor;
         }
-        return mejorValor;
     }
 
 
@@ -84,36 +85,37 @@ Durante la evaluación de un nodo, si:
 
 ### Minimax con poda:
 
-    int Minimax::minimaxConPoda(Tablero tablero, int profundidad, int alfa, int beta, bool esMaximizador) {
-    int estado = tablero.verificarEstado();
-    if (estado != 0 || profundidad == 0) {
-        return evaluarEstado(tablero);
-    }
+    int Minimax::minimaxConPoda(Tablero tablero, int profundidad, int alfa, int beta, bool esMaximizador, bool dificil) {
+        int estado = tablero.verificarEstado();
+        if (estado != 0 || profundidad == 0) {
+            return evaluarEstado(tablero, dificil);
+        }
 
-    if (esMaximizador) {
-        int mejorValor = numeric_limits<int>::min();
-        for (int col = 0; col < 7; ++col) {
-            Tablero copia = tablero;
-            if (copia.insertarFicha(col, 1)) {
-                int valor = minimaxConPoda(copia, profundidad - 1, alfa, beta, false);
-                mejorValor = max(mejorValor, valor);
-                alfa = max(alfa, mejorValor);
-                if (beta <= alfa) break; 
+        if (esMaximizador) {
+            int mejorValor = numeric_limits<int>::min();
+            for (int col = 0; col < 7; ++col) {
+                Tablero copia = tablero;
+                if (copia.insertarFicha(col, 1)) {
+                    int valor = minimaxConPoda(copia, profundidad - 1, alfa, beta, false, dificil);
+                    mejorValor = max(mejorValor, valor);
+                    alfa = max(alfa, mejorValor);
+                    if (beta <= alfa) break; 
+                }
             }
-        }
-        return mejorValor;
-    } else {
-        int mejorValor = numeric_limits<int>::max();
-        for (int col = 0; col < 7; ++col) {
-            Tablero copia = tablero;
-            if (copia.insertarFicha(col, 2)) {
-                int valor = minimaxConPoda(copia, profundidad - 1, alfa, beta, true);
-                mejorValor = min(mejorValor, valor);
-                beta = min(beta, mejorValor);
-                if (beta <= alfa) break; 
+            return mejorValor;
+        } else {
+            int mejorValor = numeric_limits<int>::max();
+            for (int col = 0; col < 7; ++col) {
+                Tablero copia = tablero;
+                if (copia.insertarFicha(col, 2)) {
+                    int valor = minimaxConPoda(copia, profundidad - 1, alfa, beta, true, dificil);
+                    mejorValor = min(mejorValor, valor);
+                    beta = min(beta, mejorValor);
+                    if (beta <= alfa) break; 
+                }
             }
+            return mejorValor;
         }
-        return mejorValor;
     }
 
 - Mejor Caso:
